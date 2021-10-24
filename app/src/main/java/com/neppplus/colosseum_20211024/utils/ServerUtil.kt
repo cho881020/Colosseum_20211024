@@ -64,6 +64,27 @@ class ServerUtil {
 
                     Log.d("서버응답본문", jsonObj.toString())
 
+
+//                    연습. code 숫자 추출. 로그인 성공 여부 판단 -> 로그로 출력
+//                    "code" 숫자 -> 제일 큰 중괄호 (jsonObj) 에 바로 달려있음. -> jsonObj에게 찾아달라고 하자.
+                    val codeNum = jsonObj.getInt("code")
+                    Log.d("로그인코드값", codeNum.toString())
+
+//                    연습. 로그인에 성공했을때만, 성공한 사람의 닉네임을 로그로 출력.
+
+                    if (codeNum == 200) {
+
+//                        data 이름표가 붙은 {  }를 추출하자. => 그 내부를 파고들 수 있다.
+                        val dataObj = jsonObj.getJSONObject("data")
+//                        user { } 추출. -> 그 내부의 닉네임 추출하자.
+                        val userObj = dataObj.getJSONObject("user")
+
+                        val nickname = userObj.getString("nick_name")
+
+                        Log.d("로그인한사람", nickname)
+
+                    }
+
                 }
 
             })
