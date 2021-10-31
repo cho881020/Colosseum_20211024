@@ -11,14 +11,18 @@ import com.neppplus.colosseum_20211024.databinding.ActivityMainBinding
 import com.neppplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setupEvents()
+        setValues()
+    }
 
+    override fun setupEvents() {
         binding.loginBtn.setOnClickListener {
 
 //            입력한 이메일/비번을 데이터바인딩으로 가져오기.
@@ -64,6 +68,13 @@ class MainActivity : AppCompatActivity() {
             })
 
         }
+    }
+
+    override fun setValues() {
 
     }
+
+
+
+
 }
