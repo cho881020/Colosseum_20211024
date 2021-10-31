@@ -2,6 +2,7 @@ package com.neppplus.colosseum_20211024.utils
 
 import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -116,6 +117,24 @@ class ServerUtil {
                 }
 
             })
+
+        }
+
+//        중복 확인 기능
+
+        fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler?) {
+
+//            1. 어디로 가야하는가? GET-query 파라미터 => 어디로? + 어떤 데이터? 한번에 조합된 형태.
+//              => 만들때도 같이 만들어야함.
+//              => 어디로가는가? 본체 => 파라미터 첨부까지. => url을 만들고 가공(build)
+
+            val urlBuilder = "${BASE_URL}/user_check".toHttpUrlOrNull()!!.newBuilder()
+            urlBuilder.addEncodedQueryParameter("type", type)
+            urlBuilder.addEncodedQueryParameter("value", value)
+
+            val urlString = urlBuilder.toString()
+
+            Log.d("최종주소", urlString)
 
         }
 
