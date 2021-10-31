@@ -38,7 +38,18 @@ class SignUpActivity : BaseActivity() {
                     val code = jsonObj.getInt("code")
 
                     if (code == 200) {
-//                        회원가입 성공.
+//                        회원가입 성공. => "~~님, 회원가입을 축하합니다!" 토스트.
+
+                        val dataObj = jsonObj.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickname = userObj.getString("nick_name")
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "${nickname}님, 회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
+//                            회원가입 종료, 로그인으로 복귀
+                            finish()
+                        }
+
                     }
                     else {
 //                        회원가입 실패. => 왜? message String에 담겨있을 예정.
