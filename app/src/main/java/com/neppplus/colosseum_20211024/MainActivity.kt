@@ -49,6 +49,14 @@ class MainActivity : AppCompatActivity() {
                     }
                     else {
 
+//                        서버가 알려주는 로그인 실패 사유 파싱 -> 토스트
+                        val message = jsonObj.getString("message")
+
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                        }
+
+
                     }
 
                 }
