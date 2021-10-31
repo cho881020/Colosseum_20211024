@@ -68,9 +68,23 @@ class SignUpActivity : BaseActivity() {
 
         binding.okBtn.setOnClickListener {
 
+
+
             val inputEmail = binding.emailEdt.text.toString()
             val inputPw = binding.pwEdt.text.toString()
             val inputNickname = binding.nicknameEdt.text.toString()
+
+
+//            입력값들이 괜찮은지 먼저 검사. => 전부 통과해야 회원가입 실행.
+            if (!isEmailOk) {
+                Toast.makeText(mContext, "이메일 확인을 다시 해주세요.", Toast.LENGTH_SHORT).show()
+
+//                return : 원래는 함수의 결과를 지정하기 위한 용도.
+//                 응용 : 결과 뒤로의 함수 내용은 실행되지 않는다. => 이 함수를 강제 종료 시키는 기능.
+                return@setOnClickListener
+            }
+
+
 
 //            입력 데이터를 => 서버의 회원가입 기능에 요청. => ServerUtil 함수 활용. => 함수가 아직 없으니 추가로 만들자.
             ServerUtil.putRequestSignUp(inputEmail, inputPw, inputNickname, object : ServerUtil.JsonResponseHandler {
