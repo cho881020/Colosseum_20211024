@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.neppplus.colosseum_20211024.databinding.ActivityLoginBinding
+import com.neppplus.colosseum_20211024.utils.ContextUtil
 import com.neppplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
 
@@ -62,6 +63,7 @@ class LoginActivity : BaseActivity() {
 
 //                        SharedPreferences 활용하여 저장해두자. => 필요할때 꺼내쓰도록.
 
+                        ContextUtil.setToken(mContext, token)
 
                         runOnUiThread {
                             Toast.makeText(mContext, "${nickname}님, 환영합니다!", Toast.LENGTH_SHORT).show()
