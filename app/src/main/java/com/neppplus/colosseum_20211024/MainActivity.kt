@@ -47,7 +47,7 @@ class MainActivity : BaseActivity() {
                     if (code == 200) {
 
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                         }
 
                     }
@@ -57,7 +57,7 @@ class MainActivity : BaseActivity() {
                         val message = jsonObj.getString("message")
 
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                         }
 
 
