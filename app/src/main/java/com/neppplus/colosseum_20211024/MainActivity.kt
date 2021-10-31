@@ -1,5 +1,6 @@
 package com.neppplus.colosseum_20211024
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,14 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.signUpBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
         binding.loginBtn.setOnClickListener {
 
 //            입력한 이메일/비번을 데이터바인딩으로 가져오기.
