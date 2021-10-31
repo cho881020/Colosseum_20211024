@@ -1,5 +1,6 @@
 package com.neppplus.colosseum_20211024.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -144,6 +145,42 @@ class ServerUtil {
                 .build()
 
 //            3. Request 완성 => 서버에 호출 하면 된다. Client로 동작.
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            } )
+
+        }
+
+//        내 정보 조회하기
+//        토큰 첨부 필요 -> ContextUtil 활용 -> Context를 이용하는 클래스 -> 재료로 Context 넣어줄 필요가 있음.
+//        토큰 첨부 API를 실행하는 함수의 재료로, context를 받아오자.
+//        대부분의 서버관련 함수는 context: Context를 재료로 맨앞에 받아두면 편하다.
+
+        fun getRequestMyInfo( context: Context,  handler: JsonResponseHandler? ) {
+
+            val urlBuilder = "${BASE_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
+//            urlBuilder.addEncodedQueryParameter()  // 이 기능은 쿼리파라미터 첨부 없음.
+
+            val urlString = urlBuilder.toString()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
 
             val client = OkHttpClient()
 
