@@ -17,6 +17,8 @@ class SignUpActivity : BaseActivity() {
 //    이메일 중복검사 통과 여부 저장 변수.
     var isEmailOk = false // 기본값 : 통과 X. 그래서 false. => 자료형 자동으로 Boolean으로 설정.
 
+    var isNicknameOk = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
@@ -25,6 +27,41 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.nicknameEdt.addTextChangedListener {
+
+            binding.nicknameCheckResultTxt.text = "닉네임 중복 검사를 해주세요."
+            isNicknameOk = false
+
+        }
+
+        binding.checkNicknameBtn.setOnClickListener {
+
+            val inputNickname = binding.nicknameEdt.text.toString()
+
+            ServerUtil.getRequestDuplCheck("NICK_NAME", inputNickname, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+                    val code = jsonObj.getInt("code")
+
+                    runOnUiThread {
+                        if (code == 200) {
+                            binding.nicknameCheckResultTxt.text = "사용해도 좋은 닉네임입니다."
+                            isNicknameOk = true
+                        }
+                        else {
+                            binding.nicknameCheckResultTxt.text = "다른 닉네임으로 재검사해주세요."
+                            isNicknameOk = false
+                        }
+                    }
+
+
+
+                }
+
+            })
+
+        }
 
         binding.emailEdt.addTextChangedListener {
 
@@ -78,6 +115,11 @@ class SignUpActivity : BaseActivity() {
 
 
 //            입력값들이 괜찮은지 먼저 검사. => 전부 통과해야 회원가입 실행.
+
+            if (!isNicknameOk) {
+                Toast.makeText(mContext, "닉네임 검사를 다시 해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
 
 //             도전과제. 구글링 필요.  => 입력한 이메일이, 이메일 양식이 맞는지? aaa@nepp.kr 등.
