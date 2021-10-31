@@ -136,6 +136,31 @@ class ServerUtil {
 
             Log.d("최종주소", urlString)
 
+
+//            2. 어디로 + 어떤데이터? 완료된 상태. -> Request 만들자.
+            val request = Request.Builder()
+                .url(urlString)  // 어디로 넣으면 -> 파라미터도 같이 들어감.
+                .get() // get방식은 파라미터 변수를 따로 받지 않는다. url에 다 있으니까.
+                .build()
+
+//            3. Request 완성 => 서버에 호출 하면 된다. Client로 동작.
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            } )
+
         }
 
     }
