@@ -25,7 +25,25 @@ class SignUpActivity : BaseActivity() {
 
             val inputEmail = binding.emailEdt.text.toString()
 
-            ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, null)
+            ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, object : ServerUtil.JsonResponseHandler {
+
+                override fun onResponse(jsonObj: JSONObject) {
+
+                    val code = jsonObj.getInt("code")
+
+                    runOnUiThread {
+
+                        if (code == 200) {
+                            binding.emailCheckResultTxt.text = "사용해도 좋습니다."
+                        }
+                        else {
+                            binding.emailCheckResultTxt.text = "다른 이메일을 입력하고, 다시 검사해주세요."
+                        }
+
+                    }
+                }
+
+            })
 
         }
 
