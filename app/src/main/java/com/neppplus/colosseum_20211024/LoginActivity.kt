@@ -62,6 +62,7 @@ class LoginActivity : BaseActivity() {
 
 //                        SharedPreferences 활용하여 저장해두자. => 필요할때 꺼내쓰도록.
 
+
                         runOnUiThread {
                             Toast.makeText(mContext, "${nickname}님, 환영합니다!", Toast.LENGTH_SHORT).show()
 
