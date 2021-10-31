@@ -10,6 +10,24 @@ class ContextUtil {
 
         private val TOKEN = "TOKEN"
 
+//        자동로그인 체크여부 저장
+        private val AUTO_LOGIN = "AUTO_LOGIN"
+
+//        자동로그인 - setter / getter 작성
+
+        fun setAutoLogin( context: Context,  isAuto: Boolean ) {
+
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            pref.edit().putBoolean(AUTO_LOGIN,  isAuto).apply()
+
+        }
+
+        fun getAutoLogin( context: Context ) : Boolean {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return pref.getBoolean(AUTO_LOGIN, false)
+        }
+
+
         // setter - 토큰 저장 기능. SAVE
         fun setToken( context: Context, token: String ) {
 
