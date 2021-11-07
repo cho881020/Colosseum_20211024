@@ -38,6 +38,22 @@ class TopicData (
 
             topicData.replyCount = jsonObj.getInt("reply_count")
 
+
+//            jsonObj 내부에 sides JSONArray가 있다. => 파싱 : SideData 목록에 추가
+
+            val sidesArr = jsonObj.getJSONArray("sides")
+
+            for ( i  in   0 until sidesArr.length() ) {
+
+                val sideObj = sidesArr.getJSONObject(i)
+
+                val sideData = SideData.getSideDataFromJSON(sideObj)
+
+                topicData.sideList.add( sideData )
+
+            }
+
+
             return topicData
 
         }
