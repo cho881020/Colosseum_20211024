@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.neppplus.colosseum_20211024.adapters.TopicAdapter
@@ -30,6 +31,16 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.topicListView.setOnItemClickListener { adapterView, view, position, l ->
+
+//            연습 - 클릭한 주제의 제목을 토스트로
+            val clickedTopic = mTopicList[position]
+
+            Toast.makeText(mContext, clickedTopic.title, Toast.LENGTH_SHORT).show()
+
+        }
+
 
         binding.logoutBtn.setOnClickListener {
 
