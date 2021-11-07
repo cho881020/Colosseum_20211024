@@ -39,6 +39,8 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         Glide.with(mContext).load(mTopicData.imageURL).into( binding.topicImg )
 
+        binding.replyCountTxt.text = "현재 의견 : ${mTopicData.replyCount}개"
+
         getTopicDetailFromServer()
 
 
