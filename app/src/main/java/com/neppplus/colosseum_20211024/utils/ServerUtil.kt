@@ -200,6 +200,42 @@ class ServerUtil {
 
         }
 
+
+
+//        메인 화면에 필요한 데이터 조회 (토론 주제 목록도 조회)
+
+        fun getRequestMainInfo( context: Context,  handler: JsonResponseHandler? ) {
+
+            val urlBuilder = "${BASE_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder()
+//            urlBuilder.addEncodedQueryParameter()  // 이 기능은 쿼리파라미터 첨부 없음.
+
+            val urlString = urlBuilder.toString()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            } )
+
+        }
+
+
     }
 
 }
