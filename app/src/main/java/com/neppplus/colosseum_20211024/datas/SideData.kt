@@ -1,8 +1,9 @@
 package com.neppplus.colosseum_20211024.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
-class SideData {
+class SideData : Serializable {
 
     var id = 0  // Int가 들어올것이라고 명시
     var title = "" // String이 들어올 자리라고 명시
