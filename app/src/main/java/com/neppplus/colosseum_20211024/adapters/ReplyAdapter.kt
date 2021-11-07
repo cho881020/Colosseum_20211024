@@ -31,6 +31,11 @@ class ReplyAdapter(
         val data = mList[position]
 
 
+        val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+
+        contentTxt.text = data.content
+
+
 
         return row
     }
