@@ -34,6 +34,24 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //            첫번째 진영에 투표 => 새로 투표 현황 받아서 -> UI 반영
 
+            ServerUtil.postRequestVote(mContext, mTopicData.sideList[0].id, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+
+
+                }
+
+            })
+
+        }
+
+        binding.voteToSecondSideBtn.setOnClickListener {
+            ServerUtil.postRequestVote(mContext, mTopicData.sideList[1].id, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+                }
+
+            })
         }
 
     }
