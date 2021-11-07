@@ -101,6 +101,11 @@ class ViewTopicDetailActivity : BaseActivity() {
 
                 val repliesArr = topicObj.getJSONArray("replies")
 
+//                mReplyList에 이미 데이터가 들어있는 상태로 add => 같은 데이터가 여러번 추가됨. (중복 댓글)
+//                기존에 들어있던 댓글 목록을 전부 삭제 하고나서, add 로 변경.
+
+                mReplyList.clear()
+
                 for ( i   in   0 until  repliesArr.length()  ) {
 
                     val replyObj = repliesArr.getJSONObject(i)
