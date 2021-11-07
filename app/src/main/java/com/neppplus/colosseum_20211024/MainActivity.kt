@@ -24,23 +24,7 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
-//        연습 - 내 정보 받아오기 호출 => 닉네임 파싱, 텍스트뷰에 반영
 
-        ServerUtil.getRequestMyInfo(mContext, object : ServerUtil.JsonResponseHandler {
-            override fun onResponse(jsonObj: JSONObject) {
-
-                val dataObj = jsonObj.getJSONObject("data")
-                val userObj = dataObj.getJSONObject("user")
-                val nickname = userObj.getString("nick_name")
-
-                runOnUiThread {
-                    binding.nicknameTxt.text = nickname
-                }
-
-
-            }
-
-        })
 
 
     }
