@@ -37,7 +37,8 @@ class ViewReplyDetailActivity : BaseActivity() {
             ServerUtil.postRequestWriteReReply(mContext, inputContent, mReplyData.id, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
 
-
+//                    자동 새로고침
+                    getReplyDetailFromServer()
 
                 }
 
@@ -70,6 +71,8 @@ class ViewReplyDetailActivity : BaseActivity() {
                 val replyObj = dataObj.getJSONObject("reply")
 
                 val repliesArr = replyObj.getJSONArray("replies")
+
+                mReReplyList.clear()
 
                 for (i  in  0 until repliesArr.length()) {
 
