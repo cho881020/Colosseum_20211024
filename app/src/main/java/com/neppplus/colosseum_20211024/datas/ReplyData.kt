@@ -12,7 +12,7 @@ class ReplyData(
     var myDislike = false
     var replyCount = 0
 
-//    var user : UserData  댓글을 적은 사람 정보 => 하위 데이터로.
+
 
 
 //    이 댓글이 선택한 진영? SideData 클래스 활용
