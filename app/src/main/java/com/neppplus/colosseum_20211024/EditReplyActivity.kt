@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.neppplus.colosseum_20211024.databinding.ActivityEditReplyBinding
 import com.neppplus.colosseum_20211024.datas.TopicData
+import com.neppplus.colosseum_20211024.utils.ServerUtil
+import org.json.JSONObject
 
 class EditReplyActivity : BaseActivity() {
 
@@ -21,6 +23,21 @@ class EditReplyActivity : BaseActivity() {
 
 
     override fun setupEvents() {
+
+        binding.writeReplyBtn.setOnClickListener {
+
+            val inputContent = binding.replyEdt.text.toString()
+
+            ServerUtil.postRequestWriteReply(mContext, mTopicData.id, inputContent, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+
+
+                }
+
+            })
+
+        }
 
     }
 
