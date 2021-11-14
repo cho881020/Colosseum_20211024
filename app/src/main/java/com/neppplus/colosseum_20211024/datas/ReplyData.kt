@@ -13,7 +13,8 @@ class ReplyData(
     var replyCount = 0
 
 
-
+//    이 댓글을 적은 사람? UserData 클래스 활용
+    var user = UserData()
 
 //    이 댓글이 선택한 진영? SideData 클래스 활용
     var selectedSide = SideData()
@@ -42,6 +43,13 @@ class ReplyData(
 
 //            진영 정보를 파싱하기에 적당한 JSONObject 추출 -> SideData의 변환기능에 넣어보자.
             replyData.selectedSide =  SideData.getSideDataFromJSON(selectedSideObj)
+
+
+//            적은 사람도 파싱
+            val userObj = jsonObj.getJSONObject("user")
+            replyData.user = UserData.getUserDataFromJson(userObj)
+
+
 
             return replyData
 
