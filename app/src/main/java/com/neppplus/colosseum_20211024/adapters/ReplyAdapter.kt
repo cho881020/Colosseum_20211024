@@ -38,6 +38,7 @@ class ReplyAdapter(
         val replyCountTxt = row.findViewById<TextView>(R.id.replyCountTxt)
         val likeCountTxt = row.findViewById<TextView>(R.id.likeCountTxt)
         val dislikeCountTxt = row.findViewById<TextView>(R.id.dislikeCountTxt)
+        val selectedSideTitleTxt = row.findViewById<TextView>(R.id.selectedSideTitleTxt)
 
         replyCountTxt.text = "답글 : ${data.replyCount}개"
         
@@ -70,6 +71,10 @@ class ReplyAdapter(
 
 
         contentTxt.text = data.content
+
+
+//        선택 진영 데이터 보여주기
+        selectedSideTitleTxt.text  = "(${data.selectedSide.title})"
 
 
 //        좋아요 텍스트뷰 클릭 > 이 댓글에 대해 좋아요 호출
