@@ -1,5 +1,6 @@
 package com.neppplus.colosseum_20211024
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -9,7 +10,7 @@ import androidx.appcompat.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity()  {
 
-    val mContext = this
+    lateinit var mContext : Context
 
     lateinit var backBtn : ImageView
     lateinit var profileBtn : ImageView
@@ -54,6 +55,8 @@ abstract class BaseActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         
 //        여기에 적는 코드? -> 자식 (다른 화면)들의 super.onCreate => 실행되는 내용
+
+        mContext = this
         
 //        모든 화면이 만들어질때 ->  액션바가 있다면 -> 액션바 커스터마이징 기능 실행
 
