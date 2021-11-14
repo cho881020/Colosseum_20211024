@@ -63,12 +63,17 @@
             android:id="@+id/likeCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/gray_border_box"
+            android:padding="10dp"
             android:text="좋아요 0개" />
 
         <TextView
             android:id="@+id/dislikeCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/gray_border_box"
+            android:padding="10dp"
             android:text="싫어요 0개" />
 
 
