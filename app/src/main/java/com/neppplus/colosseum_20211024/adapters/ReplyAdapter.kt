@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.neppplus.colosseum_20211024.R
+import com.neppplus.colosseum_20211024.ViewTopicDetailActivity
 import com.neppplus.colosseum_20211024.datas.ReplyData
 import com.neppplus.colosseum_20211024.datas.TopicData
 import com.neppplus.colosseum_20211024.utils.ServerUtil
@@ -56,6 +57,12 @@ class ReplyAdapter(
 
 //                    좋아요 찍고 돌아오면 할일
 
+//                    토론 상세 화면 -> 댓글 목록 새로고침 -> 좋아요/싫어요 갯수 반영.
+
+//                    어댑터 -> 화면의 기능? mContext를 => 토론 상세 화면으로 변신시켜서 활용해보자.
+
+                    (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
+
                 }
 
             })
@@ -68,7 +75,7 @@ class ReplyAdapter(
 
             ServerUtil.postRequestReplyLikeOrDislike(mContext, data.id, false, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
-
+                    (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
                 }
 
             })
