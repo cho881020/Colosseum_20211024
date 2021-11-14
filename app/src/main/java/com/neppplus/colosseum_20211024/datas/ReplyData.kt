@@ -1,10 +1,11 @@
 package com.neppplus.colosseum_20211024.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
 class ReplyData(
     var id: Int,
-    var content: String) {
+    var content: String) : Serializable {
 
     var likeCount = 0
     var dislikeCount = 0
