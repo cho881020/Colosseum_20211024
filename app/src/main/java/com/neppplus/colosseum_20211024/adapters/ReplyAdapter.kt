@@ -32,6 +32,15 @@ class ReplyAdapter(
 
 
         val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+        val replyCountTxt = row.findViewById<TextView>(R.id.replyCountTxt)
+        val likeCountTxt = row.findViewById<TextView>(R.id.likeCountTxt)
+        val dislikeCountTxt = row.findViewById<TextView>(R.id.dislikeCountTxt)
+
+        replyCountTxt.text = "답글 : ${data.replyCount}개"
+        
+        likeCountTxt.text = "좋아요 : ${data.likeCount}개"
+        dislikeCountTxt.text = "싫어요 : ${data.dislikeCount}개"
+
 
         contentTxt.text = data.content
 
