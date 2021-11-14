@@ -2,6 +2,7 @@ package com.neppplus.colosseum_20211024
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,8 +11,7 @@ abstract class BaseActivity : AppCompatActivity()  {
 
     val mContext = this
 
-//    onCreate의 내용을 수정해서 (재정의해서) 사용 -> override
-
+    lateinit var backBtn : ImageView
 
     abstract fun setupEvents()
     abstract fun setValues()
@@ -28,6 +28,19 @@ abstract class BaseActivity : AppCompatActivity()  {
 
         val toolbar = defActionBar.customView.parent as Toolbar
         toolbar.setContentInsetsAbsolute(0, 0)
+
+
+        backBtn = defActionBar.customView.findViewById(R.id.backBtn)
+
+        backBtn.setOnClickListener {
+
+//            모든 화면의 백버튼은 기능이 동일.
+//            화면 종료
+
+            finish()
+
+        }
+
 
     }
 
