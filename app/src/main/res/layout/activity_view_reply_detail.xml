@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ViewReplyDetailActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/writerNicknameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="작성자 닉네임" />
+
+            <TextView
+                android:id="@+id/selectedSideTitleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="선택진영 : 진영이름" />
+
+            <TextView
+                android:id="@+id/contentTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="댓글 내용"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/replyListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/contentEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="답글을 입력하세요."
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/okBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="답글등록" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
