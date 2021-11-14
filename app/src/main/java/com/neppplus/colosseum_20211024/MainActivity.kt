@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
@@ -87,6 +88,10 @@ class MainActivity : BaseActivity() {
 
         mTopicAdapter = TopicAdapter(mContext, R.layout.topic_list_item, mTopicList)
         binding.topicListView.adapter = mTopicAdapter
+
+
+//        부모 클래스인 BaseActivity가 backBtn를 숨김처리.
+        backBtn.visibility = View.GONE
 
 
     }
