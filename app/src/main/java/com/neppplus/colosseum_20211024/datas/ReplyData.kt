@@ -13,6 +13,10 @@ class ReplyData(
     var replyCount = 0
 
 //    var user : UserData  댓글을 적은 사람 정보 => 하위 데이터로.
+
+
+//    이 댓글이 선택한 진영? SideData 클래스 활용
+    var selectedSide = SideData()
     
     constructor() : this(0, "내용없음")
 
@@ -33,6 +37,11 @@ class ReplyData(
             replyData.myDislike = jsonObj.getBoolean("my_dislike")
             replyData.replyCount = jsonObj.getInt("reply_count")
 
+//            선택한 진영도 파싱
+            val selectedSideObj = jsonObj.getJSONObject("selected_side")
+
+//            진영 정보를 파싱하기에 적당한 JSONObject 추출 -> SideData의 변환기능에 넣어보자.
+            replyData.selectedSide =  SideData.getSideDataFromJSON(selectedSideObj)
 
             return replyData
 
