@@ -2,6 +2,7 @@ package com.neppplus.colosseum_20211024
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.neppplus.colosseum_20211024.databinding.ActivityEditReplyBinding
 import com.neppplus.colosseum_20211024.datas.TopicData
@@ -32,6 +33,20 @@ class EditReplyActivity : BaseActivity() {
                 override fun onResponse(jsonObj: JSONObject) {
 
 
+//                    응답 코드 : 200 -> 토스트로 "의견 남기기에 성공했습니다." 화면 종료 (이전 복귀)
+
+                    val code = jsonObj.getInt("code")
+
+                    if (code == 200) {
+
+                        runOnUiThread {
+
+                            Toast.makeText(mContext, "의견 남기기에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                            finish()
+
+                        }
+
+                    }
 
                 }
 
