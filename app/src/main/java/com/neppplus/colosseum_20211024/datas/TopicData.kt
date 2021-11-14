@@ -14,6 +14,9 @@ class TopicData (
 //    선택 진영 "목록"
     val sideList = ArrayList<SideData>()
 
+//    내가 선택한 진영
+    var mySide : SideData? = null
+
 
 //    토픽데이터 만들때는 빈 괄호 TopicData() 형태도 지원하자.
 //    다른 형태의 생성자 (보조 생성자) 도 추가 지원.
@@ -53,6 +56,18 @@ class TopicData (
 
             }
 
+//            내가 선택한 진영 파싱
+//             -> 아직 투표를 안했다면? 진영도 아직 없다. 서버도 null로 내려준다.
+
+//            null인지 아닌지 확인해서 파싱 진행. => null이 아닐때 파싱
+            if (!jsonObj.isNull("my_side")) {
+
+                val mySideObj = jsonObj.getJSONObject("my_side")
+                topicData.mySide = SideData.getSideDataFromJSON( mySideObj )
+
+            }
+
+//            투표를 안했다면? mySide 변수에 null 이 들어있다.
 
             return topicData
 
