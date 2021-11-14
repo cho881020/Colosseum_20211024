@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Colosseum_20211024</string>
+    <string name="app_name">콜로세움</string>
+    <string name="login">로그인</string>
+    <string name="sign_up">회원가입</string>
 </resources>
